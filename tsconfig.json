@@ -1,0 +1,41 @@
+/*
+  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
+  It is not intended to be used to perform a compilation.
+
+  To learn more about this file see: https://angular.io/config/solution-tsconfig.
+*/
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/common/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/common/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/welllog/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/welllog/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/seismic/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/seismic/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/gauges/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/gauges/tsconfig.spec.json"
+    },
+    {
+      "path": "./demo/tsconfig.json"
+    },
+    {
+      "path": "./tutorials/tsconfig.json"
+    }
+  ]
+}

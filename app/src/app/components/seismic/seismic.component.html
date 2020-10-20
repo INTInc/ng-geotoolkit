@@ -1,0 +1,23 @@
+<div>
+  <button (click)="seisCrossHair.enabled = !seisCrossHair.enabled">seismic
+    cross-hair: {{seisCrossHair.enabled ? "ON" : "OFF"}}</button>
+  <button (click)="onSetMemoryReader()">set memory reader</button>
+  <button (click)="onSetRemoteReader()">set remote reader</button>
+  <button (click)="seismic.zoomIn()">zoom in</button>
+  <button (click)="seismic.zoomOut()">zoom out</button>
+  <button (click)="seismic.exportToPdf()">export to PDF</button>
+</div>
+
+<div class="demo-component-container">
+
+  <div class="demo-container">
+    <int-seismic #seismic='widget'
+                 [colorMap]="getColorMap('Rainbow')"
+                 [scaleOptions]="{'samplescale': 20, 'tracescale': 2}"
+                 [reader]="currentReader"
+                 (scaleChanged)="onScaleChanged()">
+      <tool-crosshair #seisCrossHair="tool" [enabled]='true'></tool-crosshair>
+      <tool-rubberband [enabled]="true" [autoDisabled]="false"></tool-rubberband>
+    </int-seismic>
+  </div>
+</div>

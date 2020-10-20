@@ -1,0 +1,8 @@
+[gerrit]
+host=gerrit.int.com
+port=8008
+project=ng-geotoolkit
+defaultbranch=master
+defaultremote=origin
+defaultrebase=0
+

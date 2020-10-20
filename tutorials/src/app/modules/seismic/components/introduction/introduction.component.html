@@ -1,0 +1,36 @@
+<tutorials-page>
+  <tutorials-title>Seismic Introduction</tutorials-title>
+  <tutorials-description>In order to use ng-geotoolkit Seismic Widget you can use 'int-seismic' directive.</tutorials-description>
+  <tutorials-sample-code
+    templateCode='<int-seismic #seismic="widget"
+ [colorMap]="getColorMap(`Rainbow`)"
+ [scaleOptions]="{`samplescale`: 20, `tracescale`: 5}"
+></int-seismic>'
+    tsCode="import { Component } from '@angular/core';
+
+import { ColorMap } from '@int/geotoolkit/seismic/util/ColorMap';
+import { SeismicColors } from '@int/geotoolkit/seismic/util/SeismicColors';
+
+@Component({
+  selector: 'tutorials-seismic-introduction',
+  templateUrl: './introduction.component.html'
+})
+export class SeismicIntroductionComponent {
+  private seismicColorMap: ColorMap;
+
+  getColorMap(name: string) {
+    if (!this.seismicColorMap || (this.seismicColorMap && this.seismicColorMap.getName() !== name)) {
+      this.seismicColorMap = SeismicColors.getDefault().createNamedColorMap(name);
+    }
+    return this.seismicColorMap;
+  }
+
+}"
+  ></tutorials-sample-code>
+  <tutorials-sample>
+    <int-seismic #seismic='widget'
+      [colorMap]="getColorMap('Rainbow')"
+      [scaleOptions]="{'samplescale': 20, 'tracescale': 5}"
+    ></int-seismic>
+  </tutorials-sample>
+</tutorials-page>

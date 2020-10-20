@@ -1,0 +1,40 @@
+<tutorials-page>
+  <tutorials-title>MultiWell Introduction</tutorials-title>
+  <tutorials-description>In order to use MultiWell widget you can use 'int-multiwell directive'. You can get multiwell widget from component and manipulate it as geotoolkitjs widget.</tutorials-description>
+  <tutorials-sample-code
+    templateCode="<int-multiwell #multiwell></int-multiwell>"
+    tsCode="private addWellData(well: IWellTrack) {
+  well.addTrack(TrackType.IndexTrack);
+  well.addTrack(TrackType.LinearTrack);
+}
+
+private addTestTracks() {
+  const widget = this.multiwell.widget;
+  const well1 = widget.addTrack(MultiTrackType.WellTrack, {
+    range: new Range(0, 500),
+    welllog: {
+      range: new Range(4500, 5000)
+    }
+  }) as IWellTrack;
+  const well2 = widget.addTrack(MultiTrackType.WellTrack, {
+    range: new Range(50, 300),
+    welllog: {
+      range: new Range(2500, 5000)
+    }
+  }) as IWellTrack;
+  const well3 = widget.addTrack(MultiTrackType.WellTrack, {
+    range: new Range(25, 400),
+    welllog: {
+      range: new Range(4700, 5000)
+    }
+  }) as IWellTrack;
+  this.addWellData(well1);
+  this.addWellData(well2);
+  this.addWellData(well3);
+}"
+  >
+  </tutorials-sample-code>
+  <tutorials-sample>
+    <int-multiwell #multiwell></int-multiwell>
+  </tutorials-sample>
+</tutorials-page>

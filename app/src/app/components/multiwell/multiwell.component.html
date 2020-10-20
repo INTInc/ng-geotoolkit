@@ -1,0 +1,14 @@
+<div>
+  <button (click)="multiwell.zoomIn(1, 2)">zoom in</button>
+  <button (click)="multiwell.zoomOut(1, 0.5)">zoom out</button>
+  <button (click)="multiwell.exportToPdf()">export to PDF</button>
+</div>
+<div class="demo-component-container">
+
+  <div class="demo-container">
+    <int-multiwell #multiwell>
+      <tool-multiwell-crosshair #mwCrossHair="tool" [enabledOnTracks]='[0, 1, 2]'></tool-multiwell-crosshair>
+      <tool-rubberband #multiWellRubberBand="tool" [enabled]="true" [autoDisabled]="true"></tool-rubberband>
+    </int-multiwell>
+  </div>
+</div>

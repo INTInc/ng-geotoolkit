@@ -1,0 +1,41 @@
+<div>
+  <button (click)="wlToggle.enabled = !wlToggle.enabled">wl cursor: {{wlToggle.enabled ? "ON" : "OFF"}}</button>
+  <button (click)="wlRubberBand.enabled = !wlRubberBand.enabled">wl
+    rubber-band: {{wlRubberBand.enabled ? "ON" : "OFF"}}</button>
+  <label>
+    <input type="checkbox" [checked]="wlRubberBand.autoDisabled"
+           (change)="wlRubberBand.autoDisabled=$event.target.checked">
+    auto reset
+  </label>
+
+  <button (click)="wellLog.exportToPdf()">export to PDF</button>
+  <button (click)="loadLasData()">load LAS file</button>
+  <button (click)="wellLog.zoomIn(1, 2)">zoom in</button>
+  <button (click)="wellLog.zoomOut(1, 0.5)">zoom out</button>
+  <button (click)="onNavigationWellToggle()">toggle navigation well log</button>
+<!--  <button (click)="addAnnotation()">add annotation</button>-->
+<!--  <button (click)="onOverlayVisibleToggle()">{{wellLog.overlayVisible ? 'hide' : 'show'}} overlay</button>-->
+<!--  <button (click)="onOverlayEnabledToggle()">{{wellLog.overlayEnabled ? 'disable' : 'enable'}}overlay</button>-->
+</div>
+<div class="demo-component-container">
+  <div class="demo-navigation-container">
+    <int-welllog-navigation #wlNavi='widget' [targetWellLog]="navigationWellLog"></int-welllog-navigation>
+  </div>
+  <div class="demo-container">
+    <int-welllog #wellLog='widget'
+                 [template]="templates[1]"
+                 [data]="data"
+                 [minDepth]="minDepth"
+                 [maxDepth]="maxDepth"
+                 [overlayVisible]="isOverlayVisible"
+                 [overlayEnabled]="isOverlayEnabled"
+    >
+      <tool-crosshair #wlToggle="tool" [enabled]='true'></tool-crosshair>
+      <tool-rubberband #wlRubberBand="tool" [enabled]="true" [autoDisabled]="true"></tool-rubberband>
+    </int-welllog>
+  </div>
+  <div class="demo-container">
+    <int-welllog #wellLog2='widget' [template]="templates[0]">
+    </int-welllog>
+  </div>
+</div>

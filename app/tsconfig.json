@@ -1,0 +1,24 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "outDir": "../dist/demo/out-tsc",
+    "paths": {
+      "@int/ng-geotoolkit/common": ["../../projects/common/src/public-api"],
+      "@int/ng-geotoolkit/welllog": ["../../projects/welllog/src/public-api"],
+      "@int/ng-geotoolkit/gauges": ["../../projects/gauges/src/public-api"],
+      "@int/ng-geotoolkit/seismic": ["../../projects/seismic/src/public-api"]
+    },
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "demo/src/**/*.d.ts"
+  ]
+}

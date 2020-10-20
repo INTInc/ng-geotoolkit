@@ -1,0 +1,14 @@
+.demo-component-container {
+  width: 100%;
+  display: flex;
+  border: 1px solid lightgray;
+  padding: 2px;
+}
+
+.demo-container {
+  width: calc(50% - 50px);
+  height: 300px;
+  float: left;
+  padding-left: 15px;
+  position: relative;
+}

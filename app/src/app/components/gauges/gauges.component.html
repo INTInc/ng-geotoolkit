@@ -1,0 +1,33 @@
+<div>
+  <button (click)="onGaugeValueUpdate()">set random value</button>
+  <select (change)="onTypeChanged($event.target.value)">
+    <option>ModernCircular</option>
+    <option>ClassicCircular</option>
+    <option>ThreeBandCircular</option>
+    <option>DoubleAxisCircular</option>
+    <option>ArcIndicatorCircular</option>
+    <option>SegmentedBandCircular</option>
+    <option>CoveredNeedleCircular</option>
+    <option>HorizontalTraffic</option>
+    <option>VerticalTraffic</option>
+    <option>AnnotatedFillGauge</option>
+    <option>HorizontalBoxFillGauge</option>
+    <option>VerticalBoxFillGauge</option>
+    <option>EllipseFillGauge</option>
+    <option>Pressure</option>
+    <option>SimpleNumeric</option>
+    <option>ZonedHalfCircular</option>
+    <option>HalfCircularSimple</option>
+    <option>DoubleFanHalfCircular</option>
+    <option>HorizontalNumeric</option>
+    <option>TrendingNumeric</option>
+    <option>BandCircular</option>
+    <option>SimpleQuarterCircular</option>
+    <option>UnevenCircular</option>
+  </select>
+</div>
+<div class="demo-component-container">
+  <div class="demo-container">
+    <int-gauge [value]="gaugeValue" [range]="gaugeRange" [type]="gaugeType"></int-gauge>
+  </div>
+</div>

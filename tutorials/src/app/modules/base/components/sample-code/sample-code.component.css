@@ -1,0 +1,22 @@
+.tutorials-sample-code-container {
+  margin: 10px;
+}
+
+.tutorials-sample-code {
+  background-color: #fbfbfb;
+  border: 1px solid;
+  padding: 0.5em;
+  padding-left: 2em !important;
+  border-radius: 4px;
+  width: 800px;
+  min-height: 100px;
+  border-color: rgba(204, 204, 204, 0.31);
+}
+
+.tutorials-sc-navigation-button {
+  margin: 7px;
+}
+
+.tutorials-sc-current-navigation {
+  color: lightgrey;
+}

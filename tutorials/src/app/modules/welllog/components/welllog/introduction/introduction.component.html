@@ -1,0 +1,20 @@
+<tutorials-page>
+  <tutorials-title>WellLog Introduction</tutorials-title>
+  <tutorials-description>In order to use WellLog widget you can use 'int-welllog' directive. You can configure widget data using template like shown in the example below.</tutorials-description>
+  <tutorials-sample-code
+    templateCode="<int-welllog #wellLog='widget' [template]='defaultTemplate'></int-welllog>"
+    tsCode="readonly defaultTemplate = {
+  template: {
+    type: 'welllog',
+    tracks: [
+      { name: 'Track # 0', type: 'index' },
+      { name: 'Track # 1', type: 'linear', visuals: [{cg_type: 'curve', name: 'CALI'}] },
+    ]
+  }
+};"
+  >
+  </tutorials-sample-code>
+  <tutorials-sample>
+    <int-welllog #wellLog='widget' [template]="defaultTemplate"></int-welllog>
+  </tutorials-sample>
+</tutorials-page>

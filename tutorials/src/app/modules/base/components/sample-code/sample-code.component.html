@@ -1,0 +1,12 @@
+<div class="tutorials-sample-code-container">
+  <button class="tutorials-sc-navigation-button"
+          *ngFor="let item of navigation"
+          (click)="currentNavigation = item"
+  >
+    {{ item }}
+  </button>
+  <p class="tutorials-sc-current-navigation">{{ currentNavigation }}</p>
+  <p class="tutorials-sample-code">
+    <code style="white-space: pre-wrap">{{ currentCode || 'No content' }}</code>
+  </p>
+</div>

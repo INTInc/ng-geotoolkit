@@ -1,0 +1,15 @@
+{
+  "name": "@int/ng-geotoolkit",
+  "version": "0.14.0",
+  "description": "Ng-geotoolkit is a set of Angular wrappers for GeoToolkit.JS to simplify Angular usage of 2D/3D visualization libraries to display seismic, log, schematic, contour, real-time data, and more.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "INT",
+  "license": "SEE LICENSE IN GeoToolkit-JS-License.html",
+  "peerDependencies": {
+    "@int/impl": "~3.0.98",
+    "@int/geotoolkit": "~3.0.98"
+  }
+}
