@@ -27,10 +27,15 @@ export class GaugeWidget extends BaseWidget {
     this.addGauge(gauge);
   }
 
+  public fitToBounds(): void {
+    this._gauge.setBounds(this.getModelLimits().clone());
+  }
+
   private addGauge(gauge: AbstractGauge) {
     this.removeChild(this._gauge);
     this._gauge = gauge;
     this.insertChild(0, gauge);
+    this.fitToBounds();
   }
 }
 

@@ -1,7 +1,17 @@
 import { warn } from '@int/geotoolkit/base';
 import { Plot } from '@int/geotoolkit/plot/Plot';
 import {BaseWidget} from '@int/geotoolkit/widgets/BaseWidget';
-import { AfterViewInit, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild, Directive } from '@angular/core';
+import {
+  AfterViewInit,
+  ElementRef,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  Directive,
+  HostBinding,
+} from '@angular/core';
 
 export interface IComponent {
   /**
@@ -21,6 +31,12 @@ export abstract class AbstractComponent implements IComponent, OnDestroy, OnInit
   private _plot: Plot;
   // endregion
 
+  @HostBinding('style.width')
+  width = '100%';
+
+  @HostBinding('style.height')
+  height = '100%';
+
   // region ViewChildren
   @ViewChild('canvas', {static: true}) protected _canvasElementRef: ElementRef;
   @ViewChild('canvasContainer', {static: true}) protected _canvasContainer: ElementRef;
@@ -28,11 +44,12 @@ export abstract class AbstractComponent implements IComponent, OnDestroy, OnInit
 
   // region Angular lifecycle methods
   @HostListener('window:resize', ['$event'])
-  onResize(event?, suspendUpdate?) {
+  onResize() {
     if (this._plot && this._canvasContainer) {
-      const dh = this._canvasContainer.nativeElement.clientHeight - this._canvasElementRef.nativeElement.clientHeight;
-      this._plot.setSize(this._canvasContainer.nativeElement.clientWidth,
-        this._canvasContainer.nativeElement.clientHeight - dh);
+      this._plot.setSize(
+        this._canvasContainer.nativeElement.clientWidth,
+        this._canvasContainer.nativeElement.clientHeight
+      );
     }
   }
 

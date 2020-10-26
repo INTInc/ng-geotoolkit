@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class DemoGaugesComponent {
   private _gaugeValue = 0;
-  private _gaugeType = 'ThreeBandCircular';
+  private _gaugeType = 'ModernCircular';
 
   private getRandomValue(number: number) {
     return Math.random() * number;
