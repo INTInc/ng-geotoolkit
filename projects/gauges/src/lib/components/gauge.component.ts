@@ -2,7 +2,17 @@ import {Range} from '@int/geotoolkit/util/Range';
 import {GaugeWidget, isIAxisGauge, isIRangeGauge, isIValueGauge} from './gaugewidget';
 import {GaugeRegistry} from '@int/geotoolkit/gauges/registry/GaugeRegistry';
 import {Templates} from '@int/geotoolkit/gauges/defaults/Templates';
-import {ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, OnDestroy, Output} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  forwardRef,
+  HostListener,
+  Input,
+  OnDestroy,
+  AfterViewInit,
+  Output,
+} from '@angular/core';
 import {AbstractComponent} from '@int/ng-geotoolkit/common';
 
 export type GaugeValue = number | { name: string, value: number };
@@ -15,7 +25,7 @@ export type GaugeType = Templates;
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{provide: AbstractComponent, useExisting: forwardRef(() => GaugeComponent)}]
 })
-export class GaugeComponent extends AbstractComponent implements OnDestroy {
+export class GaugeComponent extends AbstractComponent implements AfterViewInit, OnDestroy {
   protected readonly _registry;
   protected _widget: GaugeWidget;
   protected _gaugeType: GaugeType;
@@ -40,6 +50,16 @@ export class GaugeComponent extends AbstractComponent implements OnDestroy {
     this._widget = new GaugeWidget();
     this._registry = GaugeRegistry.getDefaultInstance();
     this.type = Templates.ClassicCircular;
+  }
+
+  ngAfterViewInit(): void {
+    this.onResize();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event?, suspendUpdate?) {
+    super.onResize();
+    this._widget.fitToBounds();
   }
 
   /**
