@@ -1,14 +1,23 @@
 import { isInstanceOf } from '@int/geotoolkit/base';
 import { MultiWellWidget} from '@int/geotoolkit/welllog/multiwell/MultiWellWidget';
+import { CorrelationTrack} from '@int/geotoolkit/welllog/multiwell/CorrelationTrack';
+import { WellTrack} from '@int/geotoolkit/welllog/multiwell/WellTrack';
+import { ProxyWellTrack} from '@int/geotoolkit/welllog/multiwell/ProxyWellTrack';
 import {Directive, Input, Output} from '@angular/core';
 import {ToolAbstractDirective, AbstractComponent} from '@int/ng-geotoolkit/common';
 import { Point } from '@int/geotoolkit/util/Point';
 import { CrossHair } from '@int/geotoolkit/controls/tools/CrossHair';
 
+const getToolFromTrack = function (track, toolName) {
+  return track instanceof CorrelationTrack || track instanceof ProxyWellTrack || track instanceof WellTrack ?
+    track.getToolByName(toolName) : null;
+};
+
 @Directive({
   selector: 'tool-multiwell-crosshair',
   exportAs: 'tool'
 })
+
 export class ToolMultiwellCrosshairDirective extends ToolAbstractDirective {
 
   @Output() position: Point;
@@ -26,7 +35,7 @@ export class ToolMultiwellCrosshairDirective extends ToolAbstractDirective {
     if (this._component && isInstanceOf(this._component.widget, MultiWellWidget)) {
       const mww = this._component.widget as MultiWellWidget;
       for (let i = 0; i < mww.getTracksCount(); i++) {
-        const tool = mww.getTrackAt(i).getToolByName('cross-hair');
+        const tool = getToolFromTrack(mww.getTrackAt(value[i]), 'cross-hair');
         if (tool) {
           tool.setEnabled(false);
         }
@@ -35,9 +44,9 @@ export class ToolMultiwellCrosshairDirective extends ToolAbstractDirective {
         if (value[i] < mww.getTracksCount()) {
           const track = mww.getTrackAt(value[i]);
           if (track) {
-            const tool = mww.getTrackAt(value[i]).getToolByName('cross-hair');
+            const tool = getToolFromTrack(mww.getTrackAt(value[i]), 'cross-hair');
             if (tool) {
-              tool.setEnabled(value);
+              tool.setEnabled(true);
             }
           }
         }
@@ -50,7 +59,7 @@ export class ToolMultiwellCrosshairDirective extends ToolAbstractDirective {
     if (this._component && isInstanceOf(this._component.widget, MultiWellWidget)) {
       const mww = this._component.widget as MultiWellWidget;
       for (let i = 0; i < mww.getTracksCount(); i++) {
-        const tool = mww.getTrackAt(i).getToolByName('cross-hair');
+        const tool = getToolFromTrack(mww.getTrackAt(i), 'cross-hair');
         if (tool && tool.isEnabled()) {
           result.push(i);
         }
@@ -64,7 +73,7 @@ export class ToolMultiwellCrosshairDirective extends ToolAbstractDirective {
     if (this._component && isInstanceOf(this._component.widget, MultiWellWidget)) {
       const mww = this._component.widget as MultiWellWidget;
       for (let i = 0; i < mww.getTracksCount(); i++) {
-        const tool = mww.getTrackAt(i).getToolByName('cross-hair');
+        const tool = getToolFromTrack(mww.getTrackAt(i), 'cross-hair');
         if (tool) {
           tool.setEnabled(value);
         }
@@ -78,7 +87,7 @@ export class ToolMultiwellCrosshairDirective extends ToolAbstractDirective {
     if (this._component && isInstanceOf(this._component.widget, MultiWellWidget)) {
       const mww = this._component.widget as MultiWellWidget;
       for (let i = 0; i < mww.getTracksCount(); i++) {
-        const tool = mww.getTrackAt(i).getToolByName('cross-hair');
+        const tool = getToolFromTrack(mww.getTrackAt(i), 'cross-hair');
         if (tool) {
           if (result === undefined) {
             result = tool.isEnabled();

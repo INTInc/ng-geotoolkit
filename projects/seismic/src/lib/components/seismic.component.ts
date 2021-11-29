@@ -81,7 +81,7 @@ export class SeismicComponent extends AbstractComponent implements OnDestroy {
       // replace the existing pipeline
       const oldOptions = this._widget.getPipeline().getOptions();
       pipeline.setOptions(oldOptions);
-      this._widget.setPipeline(pipeline);
+      this._widget.setPipeline(pipeline, false);
     } else {
       // Create a widget to display a model
       this._widget = this.createWidget(pipeline);
@@ -243,7 +243,11 @@ export class SeismicComponent extends AbstractComponent implements OnDestroy {
   }
 
   private createPipeline(reader) {
-    const pipeline = new SeismicPipeline('MemorySeismic', reader, reader.getStatistics());
+    const pipeline = new SeismicPipeline({
+      'name': 'MemorySeismic', 
+      'reader': reader, 
+      'statistics': reader.getStatistics()
+    });
     const colorProvider = SeismicColors.getDefault();
     // TODO add API for plottype
     pipeline.setOptions({
