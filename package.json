@@ -28,8 +28,6 @@
     "@angular/platform-browser": "~13.4.0",
     "@angular/platform-browser-dynamic": "~13.4.0",
     "@angular/router": "~13.4.0",
-    "@int/geotoolkit": "^3.4",
-    "@int/impl": "^3.4",
     "@types/npm": "^2.0.29",
     "core-js": "^2.5.4",
     "rxjs": "~6.5.3",
