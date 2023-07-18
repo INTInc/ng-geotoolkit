@@ -58,7 +58,7 @@ export abstract class AbstractComponent implements IComponent, OnDestroy, OnInit
    */
   ngOnInit(): void {
     this._plot = new Plot({
-      'canvasElement': this._canvasElementRef.nativeElement,
+      'canvaselement': this._canvasElementRef.nativeElement,
       'root': this.widget,
       'autorootbounds': true
     });

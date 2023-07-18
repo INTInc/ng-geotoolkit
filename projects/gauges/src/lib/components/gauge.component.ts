@@ -104,12 +104,12 @@ export class GaugeComponent extends AbstractComponent implements AfterViewInit, 
     let name: string;
     let range: Range;
 
-    if (value['name']) {
-      name = value['name'];
-      range = new Range(value['value']);
-    } else {
+    if (value instanceof Range) {
       name = 'mainAxis';
       range = new Range(value);
+    } else {
+      name = value['name'];
+      range = new Range(value['value']);
     }
 
     if (isIRangeGauge(gauge)) {
@@ -120,8 +120,8 @@ export class GaugeComponent extends AbstractComponent implements AfterViewInit, 
 
     if (isIAxisGauge(gauge)) {
       const axis = gauge.getAxis(name);
-      if (axis) {
-        axis.setRange(value);
+      if (axis != null) {
+        axis.setRange(range);
         this.rangeChanged.emit(value);
       }
       return;
