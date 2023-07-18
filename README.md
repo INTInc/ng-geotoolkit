@@ -10,7 +10,7 @@ Gauges (tag "int-gauge")
 
 The *Common* library contains shared code.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2
 
 ## Prerequisites
 To compile and run the library, make sure you have installed:
@@ -32,16 +32,16 @@ Use npm.int.com to get libraries
 ```
   "dependencies": {
      ...
-     "@int/impl": "~3.0.41",
-     "@int/geotoolkit": "~3.0.41"
+     "@int/impl": "^4.0",
+     "@int/geotoolkit": "^4.0"
   },
 ```
 or configure to your local package
 ```
   "dependencies": {
      ...
-    "@int/geotoolkit": "file:./../npmlibs/int-geotoolkit-3.0.0.tgz",
-    "@int/impl": "file:./../npmlibs/int-impl-3.0.0.tgz"
+    "@int/geotoolkit": "file:./../npmlibs/int-geotoolkit-4.0.0.tgz",
+    "@int/impl": "file:./../npmlibs/int-impl-4.0.0.tgz"
   },
 ```
 
