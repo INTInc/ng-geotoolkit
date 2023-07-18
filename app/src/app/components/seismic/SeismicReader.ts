@@ -5,10 +5,9 @@ import { RemoteSeismicDataSource } from '@int/geotoolkit/seismic/data/RemoteSeis
 export class SeismicReader {
   public static createMemoryReader(traceCount: number, sampleCount: number, sampleRate: number): MemoryReader {
     const reader = new MemoryReader({
-      'numberOfTraces': traceCount,
-      'numberOfSamples': sampleCount,
-      'sampleRate': sampleRate,
-      'samplePower': 4
+      'numberoftraces': traceCount,
+      'numberofsamples': sampleCount,
+      'samplerate': sampleRate
     });
 
     reader.setTraceProcessor({

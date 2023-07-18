@@ -1,34 +1,35 @@
-import { AbstractUnit } from '@int/geotoolkit/util/AbstractUnit';
-import { SeismicReader } from '@int/geotoolkit/seismic/data/SeismicReader';
-import { SeismicViewWidget } from '@int/geotoolkit/seismic/widgets/SeismicViewWidget';
-import { Transformation } from '@int/geotoolkit/util/Transformation';
-import { Events } from '@int/geotoolkit/scene/Node';
-import { MathUtil } from '@int/geotoolkit/util/MathUtil';
-import { MemoryReader } from '@int/geotoolkit/seismic/data/MemoryReader';
-import { SeismicPipeline } from '@int/geotoolkit/seismic/pipeline/SeismicPipeline';
-import { SeismicColors } from '@int/geotoolkit/seismic/util/SeismicColors';
-import { SeismicWidget } from '@int/geotoolkit/seismic/widgets/SeismicWidget';
-import { ColorBarLocation } from '@int/geotoolkit/controls/shapes/ColorBarLocation';
-import { Alignment } from '@int/geotoolkit/layout/BoxLayout';
-import { AnnotationLocation } from '@int/geotoolkit/layout/AnnotationLocation';
-import { UnitFactory } from '@int/geotoolkit/util/UnitFactory';
-import { PaperFormatFactory } from '@int/geotoolkit/scene/exports/PaperFormatFactory';
-import { PaperOrientation } from '@int/geotoolkit/scene/exports/PaperOrientation';
-import { mergeObjects } from '@int/geotoolkit/base';
-import { NodeAdapter } from '@int/geotoolkit/scene/exports/NodeAdapter';
-import { PdfExport } from '@int/geotoolkit/pdf/PdfExport';
-import { StringStream } from '@int/geotoolkit/util/stream/StringStream';
-import { CompositeDocumentElement } from '@int/geotoolkit/scene/exports/CompositeDocumentElement';
-import { FreeLayout } from '@int/geotoolkit/scene/exports/FreeLayout';
-import { Document } from '@int/geotoolkit/scene/exports/Document';
-import {
-  forwardRef, Input, Output, EventEmitter, Component, OnDestroy
-} from '@angular/core';
+import {AbstractUnit} from '@int/geotoolkit/util/AbstractUnit';
+import {SeismicReader} from '@int/geotoolkit/seismic/data/SeismicReader';
+import {SeismicViewWidget} from '@int/geotoolkit/seismic/widgets/SeismicViewWidget';
+import {Transformation} from '@int/geotoolkit/util/Transformation';
+import {Events} from '@int/geotoolkit/scene/Node';
+import {MathUtil} from '@int/geotoolkit/util/MathUtil';
+import {MemoryReader} from '@int/geotoolkit/seismic/data/MemoryReader';
+import {SeismicPipeline} from '@int/geotoolkit/seismic/pipeline/SeismicPipeline';
+import {SeismicColors} from '@int/geotoolkit/seismic/util/SeismicColors';
+import {SeismicWidget} from '@int/geotoolkit/seismic/widgets/SeismicWidget';
+import {ColorBarLocation} from '@int/geotoolkit/controls/shapes/ColorBarLocation';
+import {Alignment} from '@int/geotoolkit/layout/BoxLayout';
+import {AnnotationLocation} from '@int/geotoolkit/layout/AnnotationLocation';
+import {UnitFactory} from '@int/geotoolkit/util/UnitFactory';
+import {PaperFormatFactory} from '@int/geotoolkit/scene/exports/PaperFormatFactory';
+import {PaperOrientation} from '@int/geotoolkit/scene/exports/PaperOrientation';
+import {mergeObjects} from '@int/geotoolkit/base';
+import {NodeAdapter} from '@int/geotoolkit/scene/exports/NodeAdapter';
+import {PdfExport} from '@int/geotoolkit/pdf/PdfExport';
+import {StringStream} from '@int/geotoolkit/util/stream/StringStream';
+import {CompositeDocumentElement} from '@int/geotoolkit/scene/exports/CompositeDocumentElement';
+import {FreeLayout} from '@int/geotoolkit/scene/exports/FreeLayout';
+import {Document} from '@int/geotoolkit/scene/exports/Document';
+import {Component, EventEmitter, forwardRef, Input, OnDestroy, Output} from '@angular/core';
 
-import { AbstractComponent, ScaleChangedEventArgs, ValueChangedEventArgs } from '@int/ng-geotoolkit/common';
-import { ColorMap } from '@int/geotoolkit/seismic/util/ColorMap';
-import { NormalizationType } from '@int/geotoolkit/seismic/pipeline/NormalizationType';
-import { Range } from '@int/geotoolkit/util/Range';
+import {AbstractComponent, ScaleChangedEventArgs, ValueChangedEventArgs} from '@int/ng-geotoolkit/common';
+import {ColorMap} from '@int/geotoolkit/seismic/util/ColorMap';
+import {NormalizationType} from '@int/geotoolkit/seismic/pipeline/NormalizationType';
+import {Range} from '@int/geotoolkit/util/Range';
+import {NodeExport} from '@int/geotoolkit/scene/exports/NodeExport';
+import {ScalingOptions} from '@int/geotoolkit/scene/exports/ScalingOptions';
+import DocumentExportSettings = PdfExport.DocumentExportSettings;
 
 @Component({
   selector: 'int-seismic',
@@ -220,9 +221,9 @@ export class SeismicComponent extends AbstractComponent implements OnDestroy {
     const traceCount = 50;
 
     return new MemoryReader({
-      'numberOfTraces': traceCount,
-      'numberOfSamples': sampleCount,
-      'sampleRate': sampleRate
+      'numberoftraces': traceCount,
+      'numberofsamples': sampleCount,
+      'samplerate': sampleRate
     })
       .setTraceProcessor({
           'getTraceData': function (reader, trace, traceId) {
@@ -244,15 +245,15 @@ export class SeismicComponent extends AbstractComponent implements OnDestroy {
 
   private createPipeline(reader) {
     const pipeline = new SeismicPipeline({
-      'name': 'MemorySeismic', 
-      'reader': reader, 
+      'name': 'MemorySeismic',
+      'reader': reader,
       'statistics': reader.getStatistics()
     });
     const colorProvider = SeismicColors.getDefault();
     // TODO add API for plottype
     pipeline.setOptions({
       'colors': {
-        'colorMap': 'RedWhiteBlack'
+        'colormap': 'RedWhiteBlack'
       },
       'normalization': {
         'type': NormalizationType.Limits,
@@ -260,10 +261,10 @@ export class SeismicComponent extends AbstractComponent implements OnDestroy {
       },
       'plot': {
         'type': {
-          'Wiggle': true,
-          'InterpolatedDensity': true
+          'wiggle': true,
+          'interpolateddensity': true
         },
-        'decimationSpacing': 5
+        'decimationspacing': 5
       }
     });
     return pipeline;
@@ -329,11 +330,11 @@ export class SeismicComponent extends AbstractComponent implements OnDestroy {
       .getPaper('Letter', px, PaperOrientation.Portrait);
 
     // Default settings
-    const defaultOptions = {
+    const defaultOptions: DocumentExportSettings = {
       'paperformat': paper,
       'units': 'in',
-      'scaling': 'AsIs',
-      'asyncrendering': true
+      'scaling': ScalingOptions.AsIs,
+      // 'asyncrendering': true
     };
     const printSettings = mergeObjects(options, defaultOptions);
 
