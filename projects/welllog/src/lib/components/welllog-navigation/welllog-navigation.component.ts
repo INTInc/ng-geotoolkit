@@ -83,8 +83,8 @@ export class WellLogNavigationComponent extends AbstractComponent implements OnD
     this.widget.getTool().add(this._navigationTool);
 
 
-    this._navigationTool.addListener(NavigationEvents.DepthRangeChanged,
-      (sender, eventArgs) => {
+    this._navigationTool.on(NavigationEvents.DepthRangeChanged,
+      (event, sender, eventArgs) => {
         if (this.targetWellLog && this.targetWellLog.widget) {
           this.targetWellLog.widget.setVisibleDepthLimits(eventArgs['limits']);
         }
@@ -102,12 +102,12 @@ export class WellLogNavigationComponent extends AbstractComponent implements OnD
     target.widget.on(
       Events.VisibleDepthLimitsChanged, this.setVisibleDepthLimits.bind(this));
     target.widget.getToolByName('pick')
-      .addListener(SelectionEvents.onSelectionChanged, this.handleSelectionChangedEvent);
+      .on(SelectionEvents.onSelectionChanged, this.handleSelectionChangedEvent);
   }
 
   private unsubscribeTarget(target: WellLogComponent): void {
     target.widget.getToolByName('pick')
-        .removeListener(SelectionEvents.onSelectionChanged, this.handleSelectionChangedEvent);
+        .off(SelectionEvents.onSelectionChanged, this.handleSelectionChangedEvent);
     target.widget.off(
         Events.DepthRangeChanged, this.setDepthLimits.bind(this));
     target.widget.off(
@@ -135,7 +135,7 @@ export class WellLogNavigationComponent extends AbstractComponent implements OnD
     this.subscribeTarget(this.targetWellLog);
   }
 
-  private handleSelectionChangedEvent(sender, eventArgs) {
+  private handleSelectionChangedEvent(event, sender, eventArgs) {
     if (eventArgs.getSelection().length === 0) {
       return;
     }
