@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:doc": "typedoc --out dist/docs ./projects/ --exclude \"**/*+(index|.spec|.e2e|test).ts\" --hideGenerator --mode file --excludeExternals --excludePrivate --tsconfig ./tsconfig.base.json --readme README.md --name \"INT Angular Geotoolkit Widgets\"",
+    "build:doc": "typedoc ./projects/* if-present",
     "build:lib": "ng build common && ng build gauges && ng build seismic && ng build welllog",
     "build:pack": "shx cp ./artifacts/package.json dist/ && shx cp ./artifacts/GeoToolkit-JS-License.html dist/ && cd dist && npm pack",
     "clean": "shx rm -rf ./dist/*",
@@ -58,7 +58,7 @@
     "shx": "^0.3.2",
     "ts-node": "~7.0.0",
     "tslint": "~6.1.0",
-    "typedoc": "1.0.0-dev.4",
+    "typedoc": "0.24.8",
     "typescript": "~4.9.5"
   }
 }

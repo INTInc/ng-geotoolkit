@@ -333,8 +333,7 @@ export class SeismicComponent extends AbstractComponent implements OnDestroy {
     const defaultOptions: DocumentExportSettings = {
       'paperformat': paper,
       'units': 'in',
-      'scaling': ScalingOptions.AsIs,
-      // 'asyncrendering': true
+      'scaling': ScalingOptions.AsIs
     };
     const printSettings = mergeObjects(options, defaultOptions);
 
