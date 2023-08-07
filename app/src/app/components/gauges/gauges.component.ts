@@ -25,7 +25,7 @@ export class DemoGaugesComponent {
   }
 
   get gaugeRange () {
-    return {'min': 0, 'max': 60};
+    return {'low': 0, 'high': 60};
   }
 
   onGaugeValueUpdate () {

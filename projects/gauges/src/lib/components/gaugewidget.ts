@@ -48,7 +48,7 @@ export interface IValueGauge {
 }
 
 export interface IRangeGauge {
-  setRange(range: Range | { max: number, min: number }): AbstractGauge;
+  setRange(range: Range | { high: number, low: number }): AbstractGauge;
 }
 
 export function isIAxisGauge(gauge: any): gauge is IAxisGauge {

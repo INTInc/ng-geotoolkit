@@ -16,7 +16,8 @@ import {
 import {AbstractComponent} from '@int/ng-geotoolkit/common';
 
 export type GaugeValue = number | { name: string, value: number };
-export type GaugeRange = Range | { min: number, max: number } | { name: string, value: Range | { min: number, max: number } };
+type RangeOptions = Range | Range.Options;
+export type GaugeRange = RangeOptions | { name: string, value: RangeOptions };
 export type GaugeType = Templates;
 
 @Component({
@@ -97,20 +98,19 @@ export class GaugeComponent extends AbstractComponent implements AfterViewInit, 
   @Input()
   public set range(value: GaugeRange) {
     const gauge = this._widget.gauge;
-    if (!gauge || !value) {
+    if (gauge == null || value == null) {
       return;
     }
 
-    let name: string;
+    let name = 'mainAxis';
     let range: Range;
+    let rangeOptions: RangeOptions = value as RangeOptions;
 
-    if (value instanceof Range) {
-      name = 'mainAxis';
-      range = new Range(value);
-    } else {
+    if (value['name'] != null && value['value'] != null) {
       name = value['name'];
-      range = new Range(value['value']);
+      rangeOptions = value['value'];
     }
+    range = new Range(rangeOptions);
 
     if (isIRangeGauge(gauge)) {
       gauge.setRange(range);
