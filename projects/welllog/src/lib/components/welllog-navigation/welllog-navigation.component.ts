@@ -86,7 +86,7 @@ export class WellLogNavigationComponent extends AbstractComponent implements OnD
     this._navigationTool.on(NavigationEvents.DepthRangeChanged,
       (event, sender, eventArgs) => {
         if (this.targetWellLog && this.targetWellLog.widget) {
-          this.targetWellLog.widget.setVisibleDepthLimits(eventArgs['limits']);
+          this.targetWellLog.widget.setVisibleDepthLimits(eventArgs.getLimits());
         }
       });
   }

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["projects/*"],
+  "name": "INT Angular Geotoolkit Widgets",
+  "entryPointStrategy": "packages",
+  "includeVersion": true
+}
